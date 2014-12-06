@@ -1,0 +1,2 @@
+ghc55.ghc.andrew.cmu.edu
+ghc56.ghc.andrew.cmu.edu
