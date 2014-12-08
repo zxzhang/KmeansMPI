@@ -158,7 +158,7 @@ public class KmeansDataPoint {
     for (int i = start; i < end; i++) {
       int group = this.data[i].getGroup();
       newCentroids[group].addDataPoint(this.data[i]);
-      newCentroids[group].setCnt(newCentroids[group].getCnt() + 1);
+      newCentroids[group].addCnt();
     }
 
     return newCentroids;

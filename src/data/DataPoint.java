@@ -20,7 +20,7 @@ public class DataPoint implements Serializable {
 
   private int group;
 
-  private double cnt;
+  private int cnt;
 
   /**
    * @param values
@@ -29,7 +29,7 @@ public class DataPoint implements Serializable {
   public DataPoint(List<Double> values) {
     this.values = new ArrayList<Double>(values);
     this.group = -1;
-    this.cnt = 0.0;
+    this.cnt = 0;
   }
 
   /**
@@ -97,18 +97,19 @@ public class DataPoint implements Serializable {
       this.values.set(i, this.values.get(i) / num);
     }
   }
-
-  /**
-   * @param cnt2
-   */
-  public void setCnt(double cnt2) {
-    this.cnt = cnt2;
+  
+  public void addCnt() {
+    this.cnt++;
   }
 
   /**
    * @return
    */
-  public double getCnt() {
+  public void addCnt(int cnt) {
+    this.cnt += cnt;
+  }
+  
+  public int getCnt() {
     return this.cnt;
   }
 }

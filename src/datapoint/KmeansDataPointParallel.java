@@ -58,7 +58,7 @@ public class KmeansDataPointParallel {
           MPI.COMM_WORLD.Recv(buff, 0, kmeans.getClusterNumber(), MPI.OBJECT, i, 1);
 
           for (int j = 0; j < kmeans.getClusterNumber(); j++) {
-            cent[j].setCnt(cent[j].getCnt() + buff[j].getCnt());
+            cent[j].addCnt(buff[j].getCnt());
             cent[j].addDataPoint(buff[j]);
           }
         }
