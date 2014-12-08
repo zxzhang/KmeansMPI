@@ -10,22 +10,21 @@ import data.DnaPoint;
  */
 public class KmeansDnaSequential {
 
-  public static final int thet = 1;
-
   /**
    * @param args
    */
   public static void main(String[] args) {
-    if (args.length != 2) {
-      System.out.println("java KmeansDnaSequential <input_file> <cluster_number>");
+    if (args.length != 3) {
+      System.out.println("java KmeansDnaSequential <input_file> <cluster_number> <thet>");
       return;
     }
 
+    int thet = Integer.parseInt(args[2]);
     long start = System.currentTimeMillis();
 
     KmeansDna obj = new KmeansDna(Integer.parseInt(args[1]), args[0]);
     obj.clusterInitialize();
-    DnaPoint[] result = runKmeans(obj);
+    DnaPoint[] result = runKmeans(obj, thet);
 
     long end = System.currentTimeMillis();
 
@@ -37,7 +36,7 @@ public class KmeansDnaSequential {
    * @param obj
    * @return
    */
-  private static DnaPoint[] runKmeans(KmeansDna obj) {
+  private static DnaPoint[] runKmeans(KmeansDna obj, int thet) {
     int round = 0;
 
     while (true) {
@@ -48,7 +47,7 @@ public class KmeansDnaSequential {
 
       DnaPoint[] newCentroid = obj.updateCentroid(0, obj.getDataSize());
       obj.updateCentroidsValues(newCentroid);
-      double diff = obj.calculateDiff(newCentroid);
+      int diff = obj.calculateDiff(newCentroid);
 
       System.out.println("Round: " + ++round + "\tDiff: " + diff);
 

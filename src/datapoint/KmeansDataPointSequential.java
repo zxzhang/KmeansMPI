@@ -10,22 +10,22 @@ import data.DataPoint;
  */
 public class KmeansDataPointSequential {
 
-  public static final double thet = 0.1;
-
   /**
    * @param args
    */
   public static void main(String[] args) {
-    if (args.length != 2) {
-      System.out.println("java KmeansDataPointSequential <input_file> <cluster_number>");
+    if (args.length != 3) {
+      System.out.println("java KmeansDataPointSequential <input_file> <cluster_number> <thet>");
       return;
     }
+    
+    double thet = Double.parseDouble(args[2]);
 
     long start = System.currentTimeMillis();
 
     KmeansDataPoint obj = new KmeansDataPoint(Integer.parseInt(args[1]), args[0]);
     obj.clusterInitialize();
-    DataPoint[] result = runKmeans(obj);
+    DataPoint[] result = runKmeans(obj, thet);
 
     long end = System.currentTimeMillis();
 
@@ -37,7 +37,7 @@ public class KmeansDataPointSequential {
    * @param obj
    * @return
    */
-  private static DataPoint[] runKmeans(KmeansDataPoint obj) {
+  private static DataPoint[] runKmeans(KmeansDataPoint obj, double thet) {
     int round = 0;
 
     while (true) {

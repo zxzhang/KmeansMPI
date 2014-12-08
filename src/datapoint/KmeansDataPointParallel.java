@@ -12,18 +12,18 @@ import mpi.MPIException;
  */
 public class KmeansDataPointParallel {
 
-  public static final double thet = 0.1;
-
   /**
    * @param args
    * @throws MPIException
    */
   public static void main(String[] args) throws MPIException {
-    if (args.length != 2) {
-      System.out.println("java KmeansDataPointParallel <input> <cluster>");
+    if (args.length != 3) {
+      System.out.println("java KmeansDataPointParallel <input> <cluster> <thet>");
       return;
     }
 
+    double thet = Double.parseDouble(args[2]);
+    
     long startTime = System.currentTimeMillis();
 
     MPI.Init(args);

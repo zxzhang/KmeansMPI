@@ -12,18 +12,17 @@ import mpi.MPIException;
  */
 public class KmeansDnaParallel {
 
-  public static final double thet = 1;
-
   /**
    * @param args
    * @throws MPIException
    */
   public static void main(String[] args) throws MPIException {
-    if (args.length != 2) {
-      System.out.println("java KmeansDataPointParallel <input> <cluster>");
+    if (args.length != 3) {
+      System.out.println("java KmeansDataPointParallel <input> <cluster> <thet>");
       return;
     }
-
+    
+    int thet = Integer.parseInt(args[2]);
     long startTime = System.currentTimeMillis();
 
     MPI.Init(args);
@@ -63,7 +62,7 @@ public class KmeansDnaParallel {
         }
 
         kmeans.updateCentroidsValues(cent);
-        double diff = kmeans.calculateDiff(cent);
+        int diff = kmeans.calculateDiff(cent);
 
         // /////////////////////////////////////////////////////////////
         System.out.println("Round: " + ++round + "\tDiff: " + diff);
