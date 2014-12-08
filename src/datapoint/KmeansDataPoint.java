@@ -152,19 +152,13 @@ public class KmeansDataPoint {
     }
 
     for (int i = 0; i < this.clusterNumber; i++) {
+      newCentroids[i] = new DataPoint(zeros);
+    }
 
-      DataPoint point = new DataPoint(zeros);
-      double cnt = 0;
-
-      for (int j = start; j < end; j++) {
-        if (this.data[j].getGroup() == i) {
-          cnt++;
-          point.addDataPoint(this.data[j]);
-        }
-      }
-
-      point.setCnt(cnt);
-      newCentroids[i] = point;
+    for (int i = start; i < end; i++) {
+      int group = this.data[i].getGroup();
+      newCentroids[group].addDataPoint(this.data[i]);
+      newCentroids[group].setCnt(newCentroids[group].getCnt() + 1);
     }
 
     return newCentroids;

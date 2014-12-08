@@ -175,16 +175,12 @@ public class KmeansDna {
         cnts.add(new DnaCount());
       }
 
-      DnaPoint point = new DnaPoint(zeros, cnts);
+      newCentroids[i] = new DnaPoint(zeros, cnts);
+    }
 
-      for (int j = start; j < end; j++) {
-        // System.out.println(i + "\t" + this.data[j].getGroup());
-        if (this.data[j].getGroup() == i) {
-          point.addDnaPoint(this.data[j]);
-        }
-      }
-
-      newCentroids[i] = point;
+    for (int i = start; i < end; i++) {
+      int group = this.data[i].getGroup();
+      newCentroids[group].addDnaPoint(this.data[i]);
     }
 
     // print(newCentroids);
